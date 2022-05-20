@@ -1,0 +1,54 @@
+
+  <br>
+  <br>
+  <br>
+<p class="text-2xl flex items-center justify-center">岩土样本统计图表</p>
+<p class="text-xl flex items-center justify-center">当前共计{{this.length}}份样本</p>
+
+<mat-radio-group  class=" flex justify-center  "  >
+  <mat-radio-button  (change)="change1()" value="1"  checked="true">统计表</mat-radio-button>
+  <mat-radio-button  (change)="change2()" value="2" >统计图</mat-radio-button>
+</mat-radio-group>
+<br>
+<br>
+<div *ngIf="num==1"   class=" flex items-center justify-center   ">
+  <table mat-table [dataSource]="dataSource" class="full-width-table mat-elevation-z8"  matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef >序号</th>
+      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef >	岩土名</th>
+      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <!-- num1 Column -->
+    <ng-container matColumnDef="num1">
+      <th mat-header-cell *matHeaderCellDef >	期望数量</th>
+      <td mat-cell *matCellDef="let row">{{row.num1}}</td>
+    </ng-container>
+
+    <!-- num2 Column -->
+    <ng-container matColumnDef="num2">
+      <th mat-header-cell *matHeaderCellDef >	当前数量</th>
+      <td mat-cell *matCellDef="let row">{{row.num2}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<div *ngIf="num==2" echarts [options]="chartOption" class="demo-chart "  (chartInit)="onChartInit($event)">
+  
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+

@@ -1,0 +1,72 @@
+<br>
+<br>
+
+<!-- <div class="container h-96 w-full object-scale-down ">
+    <img class="h-full w-full  " src="../../assets/yangbenguanli/uploads/webp/1641813762985.webp" alt="pic">
+</div> -->
+<div class="  grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <!-- <div *ngFor="let item of this.shuju"> -->
+    <!-- <video controls autobuffer="true" class=" container mx-auto bg-white justify-center fixed top-40 left-0 right-0" width="80%" >
+    <source *ngIf="videoURL" [src]="videoURL">
+          不支持的浏览器
+  </video> -->
+
+    <div *ngFor="let item of this.list1;index as i;" class=" flex p-2  ">
+        <div class="  bg-white rounded-xl shadow-md ">
+            <div class="p-2 rounded-xl ">
+                <div class="flex ">
+                    <button mat-mini-fab disabled class="p">
+                  <span>{{i+1}}</span>
+                </button>
+                    <div class="pl-4 ">
+                        <div class="uppercase tracking-wide text-lg text-indigo-500 font-semibold">样本编号:{{item.number}}</div>
+                        <p class="mt-2 text-slate-500">{{item.rockAttribute.name}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="container h-96 w-full object-scale-down ">
+                <img class="lazy h-full w-full" src="" data-src="../../assets/yangbenguanli/uploads/raw/2.jpg" alt="pic">
+            </div> -->
+            <!--  -->
+            <div class="h-96 w-full object-scale-down ">
+                <img class="lazy h-full w-full" src="../../assets/tupian/1.gif" alt="pic">
+            </div>
+
+            <!-- <div class="container h-96 w-full object-scale-down ">
+                <img class="lazy h-full w-full" src="" data-src="{{item.imgUrl}}" alt="pic">
+            </div> -->
+            <div class="p-4 ">
+                <p>
+                    说明:{{item.gatherDate}}，编号为{{item.number}}的{{item.rockAttribute.name}} 由{{item.gatherName}}采集与{{item.gatherAddress}}。 当前保存在{{item.storeAddress}}。
+                </p>
+                <p>备注：{{item.note}}</p>
+            </div>
+
+            <div *ngIf="isDisplay(item)" class="grid gap-4 grid-cols-3 ">
+                <button mat-button (click)="openDialog(item.videoUrl)" class=" text-sm text-indigo-500 bg-white hover:bg-sky-700 ">
+                        <mat-icon>play_circle_outline</mat-icon>样本视频   
+                    </button>
+
+                <button mat-button (click)="openDialog1(item.id)" class="  text-sm text-indigo-500 bg-white hover:bg-sky-700   ">
+                        <mat-icon>delete</mat-icon> 删除样本
+                    </button>
+                <button mat-button [routerLink]="['/edit/',item.imgUrl,item.id,item.number,item.gatherName,item.gatherAddress,item.gatherDate,item.storeAddress,item.videoUrl,item.rockAttribute.color,item.rockAttribute.dentisy,item.rockAttribute.strength,item.rockAttribute.include,item.rockAttribute.state,item.rockAttribute.gloss,item.rockAttribute.evenness,item.rockAttribute.name]"
+                    class=" text-sm text-indigo-500 bg-white hover:bg-sky-700   ">
+                        <mat-icon> border_color</mat-icon> 编辑数据
+                    </button>
+            </div>
+
+            <div class="grid gap-4 grid-cols-3 " *ngIf="item.note != '人工标定'">
+                <p></p>
+                <button mat-button (click)="openDialog1(item.id)" class=" text-sm text-indigo-500 bg-white hover:bg-sky-700">
+                        <mat-icon>delete</mat-icon> 删除样本
+                    </button>
+                <p></p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

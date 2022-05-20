@@ -1,0 +1,300 @@
+<br>
+<br>
+<br>
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+
+
+    <mat-card class="shipping-card">
+        <!-- <mat-card-header>
+          <mat-card-title>样本属性</mat-card-title>
+        </mat-card-header> -->
+
+        <mat-card-content>
+            <div class="row ">
+                <div class="hidden  sm:contents">
+                    <div class="col p-4 ">
+                        <img class="full-width  " [src]="this.imgUrl1">
+                    </div>
+                </div>
+                <div class="col p-4">
+                    <div class="col  ">
+                        <img class="full-width   sm:hidden" [src]="this.imgUrl1">
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                <input matInput placeholder="样本编号" formControlName="number">
+                                <P> {{this.addressForm.validator}}</P>
+                                <mat-error *ngIf="addressForm.controls['number'].hasError('required')">
+                                    样本编号是 <strong>必需的</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                <input matInput placeholder="采样人姓名" formControlName="gatherName">
+                                <mat-error *ngIf="addressForm.controls['gatherName'].hasError('required')">
+                                    采样人姓名是 <strong>必需的</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                <input matInput placeholder="采样地址" formControlName="gatherAddress">
+                                <mat-error *ngIf="addressForm.controls['gatherAddress'].hasError('required')">
+                                    采样地址是 <strong>必需的</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="fill" class="full-width">
+
+                                <input matInput type="date" placeholder="采样日期" formControlName="gatherDate">
+
+                                <!-- <input   matInput type="date"   max="{{today | date:'YYYY-MM-dd'}}"   placeholder="采样日期" formControlName="采样日期"  > -->
+                                <mat-error *ngIf="addressForm.controls['gatherDate'].hasError('required')">
+                                    采样日期是 <strong>必需的</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                <input matInput placeholder="样本存储地址" formControlName="storeAddress">
+                                <mat-error *ngIf="addressForm.controls['storeAddress'].hasError('required')">
+                                    样本存储地址是 <strong>必需的</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                <input matInput placeholder="备注" formControlName="note">
+                                <mat-error *ngIf="addressForm.controls['note'].hasError('required')">
+                                    备注是 <strong>必需的</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col">
+                            <!-- <mat-form-field  class="full-width">
+                <input matInput   placeholder="视频" formControlName="videoUrl"  >    
+              </mat-form-field> -->
+                            <mat-form-field class="full-width" appearance="fill">
+                                <mat-label>视频</mat-label>
+                                <input matInput disabled value="{{this.addressForm.value.videoUrl}}">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+
+
+                    <mat-accordion>
+                        <mat-expansion-panel expanded="{{panelOpenState}}" (opened)="panelOpenState = true">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>样本属性</mat-panel-title>
+                                <mat-panel-description>
+                                    <!-- <span *ngIf="mingming()">请选择样本属性并定名</span> -->
+                                    <span>样本已定名为{{addressForm.controls['name'].value}} </span>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <mat-stepper orientation="vertical" [linear]="!isLinear" selectedIndex="{{number}}" #stepper>
+
+                                <mat-step [stepControl]="addressForm.controls['color']">
+                                    <ng-template matStepLabel>颜色：{{addressForm.controls['color'].value}} </ng-template>
+                                    <div class="row">
+                                        <div class="col">
+                                            <mat-form-field class="full-width" appearance="fill">
+                                                <mat-select placeholder="颜色" formControlName="color">
+                                                    <mat-option *ngFor="let colour of colours" [value]="colour.name">
+                                                        {{ colour.name }}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="addressForm.controls['color'].hasError('required')">
+                                                    颜色是 <strong>必需的</strong>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </mat-step>
+
+                                <mat-step [stepControl]="addressForm.controls['dentisy']">
+                                    <ng-template matStepLabel>密实度：{{addressForm.controls['dentisy'].value}}</ng-template>
+                                    <div class="row">
+                                        <div class="col">
+                                            <mat-form-field class="full-width">
+                                                <mat-select placeholder="密实度" formControlName="dentisy">
+                                                    <mat-option *ngFor="let compactness of compactnesss" [value]="compactness.name">
+                                                        {{ compactness.name }}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="addressForm.controls['dentisy'].hasError('required')">
+                                                    密实度是 <strong>必需的</strong>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </mat-step>
+
+                                <mat-step [stepControl]="addressForm.controls['strength']">
+                                    <ng-template matStepLabel>强度：{{addressForm.controls['strength'].value}}</ng-template>
+                                    <div class="row">
+                                        <div class="col">
+                                            <mat-form-field class="full-width">
+                                                <mat-select placeholder="强度" formControlName="strength">
+                                                    <mat-option *ngFor="let strength of strengths" [value]="strength.name">
+                                                        {{ strength.name }}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="addressForm.controls['strength'].hasError('required')">
+                                                    强度是 <strong>必需的</strong>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </mat-step>
+
+                                <mat-step [stepControl]="addressForm.controls['include']">
+                                    <ng-template matStepLabel>包含物：{{addressForm.controls['include'].value}}</ng-template>
+                                    <div class="row">
+                                        <div class="col">
+                                            <mat-form-field class="full-width">
+                                                <mat-select placeholder="包含物" formControlName="include">
+                                                    <mat-option *ngFor="let inclusion of inclusions" [value]="inclusion.name">
+                                                        {{ inclusion.name }}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="addressForm.controls['include'].hasError('required')">
+                                                    包含物是 <strong>必需的</strong>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </mat-step>
+
+                                <mat-step [stepControl]="addressForm.controls['state']">
+                                    <ng-template matStepLabel>状态：{{addressForm.controls['state'].value}}</ng-template>
+                                    <div class="row">
+                                        <div class="col">
+                                            <mat-form-field class="full-width">
+                                                <mat-select placeholder="状态" formControlName="state">
+                                                    <mat-option *ngFor="let state of states" [value]="state.name">
+                                                        {{ state.name }}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="addressForm.controls['state'].hasError('required')">
+                                                    状态是 <strong>必需的</strong>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </mat-step>
+
+                                <mat-step [stepControl]="addressForm.controls['gloss']">
+                                    <ng-template matStepLabel>光泽度：{{addressForm.controls['gloss'].value}}</ng-template>
+                                    <div class="row">
+                                        <div class="col">
+                                            <mat-form-field class="full-width">
+                                                <mat-select placeholder="光泽度" formControlName="gloss">
+                                                    <mat-option *ngFor="let glossiness of glossinesss" [value]="glossiness.name">
+                                                        {{ glossiness.name }}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="addressForm.controls['gloss'].hasError('required')">
+                                                    光泽度是 <strong>必需的</strong>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </mat-step>
+
+                                <mat-step [stepControl]="addressForm.controls['evenness']">
+                                    <ng-template matStepLabel>均匀度：{{addressForm.controls['evenness'].value}}</ng-template>
+                                    <div class="row">
+                                        <div class="col">
+                                            <mat-form-field class="full-width">
+                                                <mat-select placeholder="均匀度" formControlName="evenness">
+                                                    <mat-option *ngFor="let uniformity of uniformitys" [value]="uniformity.name">
+                                                        {{ uniformity.name }}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="addressForm.controls['evenness'].hasError('required')">
+                                                    均匀度是 <strong>必需的</strong>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </mat-step>
+
+                                <mat-step [stepControl]="addressForm.controls['name']">
+                                    <ng-template matStepLabel>定名：{{addressForm.controls['name'].value}}</ng-template>
+                                    <div class="row">
+                                        <div class="col">
+                                            <mat-form-field class="full-width">
+                                                <mat-select placeholder="定名" formControlName="name">
+                                                    <mat-option *ngFor="let name of names" [value]="name.name">
+                                                        {{ name.name }}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
+                                                    定名是 <strong>必需的</strong>
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </mat-step>
+
+                                <!-- <div>     
+        <app-area (setImgSrc)="setImgSrc($event)"></app-area>
+        <img src="{{tupians[1]}}" alt="">  
+      </div> -->
+
+                                <!-- {{this.value}} -->
+
+                                <!-- <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="图片" formControlName="图片">
+              <mat-option *ngFor="let tupian of tupians" [value]="tupian">
+                {{ tupian }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addressForm.controls['图片'].hasError('required')">
+              图片是 <strong>必需的</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div> -->
+
+
+
+                            </mat-stepper>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+
+                </div>
+            </div>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button *ngIf="isDisplay()" class="full-width" mat-raised-button color="primary" type="submit">上传</button>
+        </mat-card-actions>
+    </mat-card>
+
+</form>

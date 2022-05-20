@@ -1,0 +1,65 @@
+<style>
+ .ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+  
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+  } 
+  
+</style>
+
+
+
+<body class=" h-full ">
+  <br>
+  <br> 
+  <br>
+  <br> 
+  
+
+
+   <div class="flex items-center justify-center ">
+     <div class="bg-white md:flex items-center justify-center max-w-sm md:max-w-3xl ">
+        <div class="hidden md:block w-1/2 relative">
+            <img src="../../assets/tupian/2.png" alt="" 
+            class="w-full h-full object-cover">
+        </div>
+        <div class=" md:w-1/2 p-8  ">
+            <h1 class="text-gray-700 text-3xl text-center mb-4">用户登录</h1>
+            <form   action="" class="text-gray-600">
+                <div class="my-3">
+                    <input placeholder="用户名" 
+                    required
+                    [(ngModel)]="user.name" name="name" #name="ngModel"   
+                    class="border rounded w-full py-2 px-4 outline-none focus:shadow-outline">
+                   
+                </div>
+                <div class="my-3">
+                    <input type="password" placeholder="密码"
+                    required 
+                    [(ngModel)]="user.pwd" name="pwd" #name="ngModel"
+                    class="border rounded w-full py-2 px-4 outline-none focus:shadow-outline">
+                    
+                </div>
+
+                <div>
+                    <!-- <button  class="border rounded  w-full py-2  border-blue-700
+                     bg-blue-600 text-white"(click)="login()" >点击登录</button> -->
+                  
+                     <button mat-stroked-button class="border rounded  w-full py-2  border-blue-700
+                     bg-blue-600 text-white"(click)="login()"  >点击登录</button>
+
+                </div>
+                
+            </form>
+        </div>
+     </div>
+   </div>
+   <br>
+   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  
+  
+ 
+</body>
+

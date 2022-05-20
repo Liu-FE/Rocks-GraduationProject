@@ -1,0 +1,129 @@
+<!-- {{today | date:'YYYY-MM-dd'}} -->
+<div class="bg-white">
+    <br>
+    <br>
+    <p class="text-2xl flex items-center justify-center">
+        <mat-icon>remove_red_eye</mat-icon>智能识别</p>
+    <div *ngIf="!imgURL">
+        <p class="text-2xl flex items-center justify-center">点击图标照相或选择图片</p>
+        <div class="   h-15 flex items-center justify-center ">
+            <button mat-fab matTooltip="点击图标照相或选择图片" typr="file" color="warn" class="flex relative ">
+  <label for="image_uploads"> 
+     <mat-icon>camera_alt</mat-icon>
+    <!-- <svg class=" h-8 stroke-cyan-500 " viewBox="0 0 48 40" fill="none" >
+  <path d="M1 13C1 10.2386 3.23858 8 6 8H13.4914C14.3844 8 15.1691 7.40805 15.4144 6.54944L16.5856 2.45056C16.8309 1.59196 17.6156 1 18.5086 1H29.4914C30.3844 1 31.1691 1.59195 31.4144 2.45056L32.5856 6.54944C32.8309 7.40804 33.6156 8 34.5086 8H42C44.7614 8 47 10.2386 47 13V34C47 36.7614 44.7614 39 42 39H6C3.23858 39 1 36.7614 1 34V13Z" stroke-width="2"></path> <circle cx="24" cy="23" r="9" stroke-width="2"></circle>
+</svg> -->
+<!-- <mat-icon  >camera</mat-icon> -->
+</label>
+  </button>
+            <input class="absolute w-full h-16" hidden id="image_uploads" type="file" (change)="fileChange($event.target)" multiple="multiple">
+        </div>
+    </div>
+    <div *ngIf="imgURL">
+        <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+
+
+            <mat-card class="shipping-card">
+                <!-- <mat-card-header>
+        <mat-card-title>样本属性</mat-card-title>
+      </mat-card-header> -->
+
+                <mat-card-content>
+                    <div class="row ">
+                        <div class=" hidden  sm:contents ">
+                            <div class="col p-4 ">
+                                <img class=" full-width  " *ngIf="imgURL" [src]="imgURL">
+                            </div>
+                        </div>
+                        <div class="col p-4 ">
+                            <div class="col  ">
+                                <img class="full-width   sm:hidden" *ngIf="imgURL" [src]="imgURL">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <mat-form-field class="full-width">
+                                        <input matInput [value]="111" placeholder="样本编号" formControlName="number">
+                                        <P> {{this.addressForm.validator}}</P>
+                                        <mat-error *ngIf="addressForm.controls['number'].hasError('required')">
+                                            样本编号是 <strong>必需的</strong>
+
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <mat-form-field class="full-width">
+                                        <input matInput placeholder="采样人姓名" formControlName="gatherName">
+                                        <mat-error *ngIf="addressForm.controls['gatherName'].hasError('required')">
+                                            采样人姓名是 <strong>必需的</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <mat-form-field class="full-width">
+                                        <input matInput placeholder="采样地址" formControlName="gatherAddress">
+                                        <mat-error *ngIf="addressForm.controls['gatherAddress'].hasError('required')">
+                                            采样地址是 <strong>必需的</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <mat-form-field appearance="fill" class="full-width">
+
+                                        <input matInput type="date" max="{{today | date:'YYYY-MM-dd'}}" placeholder="采样日期" formControlName="gatherDate">
+
+                                        <!-- <input   matInput type="date"   max="{{today | date:'YYYY-MM-dd'}}"   placeholder="采样日期" formControlName="采样日期"  > -->
+                                        <mat-error *ngIf="addressForm.controls['gatherDate'].hasError('required')">
+                                            采样日期是 <strong>必需的</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <mat-form-field class="full-width">
+                                        <input matInput placeholder="样本存储地址" formControlName="storeAddress">
+                                        <mat-error *ngIf="addressForm.controls['storeAddress'].hasError('required')">
+                                            样本存储地址是 <strong>必需的</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <mat-form-field class="full-width">
+                                        <input matInput placeholder="备注" formControlName="note">
+                                        <mat-error *ngIf="addressForm.controls['note'].hasError('required')">
+                                            备注是 <strong>必需的</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </mat-card-content>
+
+                <mat-card-actions>
+                    <button *ngIf="isDisplay()" class="full-width" mat-raised-button color="primary" type="submit">上传</button>
+                </mat-card-actions>
+            </mat-card>
+
+        </form>
+    </div>
+</div>

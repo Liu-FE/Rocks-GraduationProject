@@ -1,0 +1,137 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<style>
+    nav a {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        padding: 0 15px;
+    }
+    
+    nav a:hover {
+        color: rgb(164, 192, 22);
+    }
+    
+    nav li>ul {
+        background: #e6e9f0;
+        height: 0;
+        position: absolute;
+        overflow: hidden;
+        min-width: 110px;
+    }
+    
+    nav li>ul a {
+        line-height: 40px;
+    }
+    
+    nav li:hover>ul {
+        height: auto;
+    }
+    
+    .active {
+        color: rgb(219, 24, 40);
+    }
+</style>
+
+<div class="bg-gray-100 ">
+
+    <body>
+
+        <nav class=" flex items-center justify-between bg-blue-500 text-black-800  fixed top-0 left-0 right-0 z-40  space-x-4  h-16">
+
+            <div class="flex items-center h-full pl-4">
+                <mat-icon>track_changes</mat-icon>
+                <div class="flex ">TRIRS
+                    <div class=" hidden lg:contents">岩土样本数据管理系统</div>
+                </div>
+
+            </div>
+            <div class="flex items-center">
+                <div class="  sm:hidden">
+                    <ul class=" ml-4 flex items-stretch h-full">
+                        <li>
+                            <a class=" ml-4">
+                                <mat-icon>menu</mat-icon>功能</a>
+                            <ul class=" absolute visible hover:visible ">
+                                <li>
+                                    <a routerLink="/shoujibiao" routerLinkActive="active">
+                                        <mat-icon>camera</mat-icon>样本收集</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/shibie" routerLinkActive="active">
+                                        <mat-icon>remove_red_eye</mat-icon>样本识别</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/zhanshi" routerLinkActive="active">
+                                        <mat-icon> format_align_center</mat-icon>样本管理</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/tongjibiao" routerLinkActive="active">
+                                        <mat-icon> bar_chart</mat-icon>样本统计</a>
+                                </li>
+                                <li>
+                                    <a *ngIf="token" (click)="this.authservice.logout()">
+                                        <mat-icon>keyboard_tab</mat-icon>退出</a>
+
+                                    <a *ngIf="!token" routerLink="/denglu" routerLinkActive="active">
+                                        <mat-icon>person</mat-icon>登录</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="hidden sm:contents md:contents">
+                    <ul class=" ml-4 flex items-stretch h-full">
+                        <li>
+                            <a routerLink="/shoujibiao" routerLinkActive="active">
+                                <mat-icon>camera</mat-icon>样本收集</a>
+                        </li>
+                        <li>
+                            <a routerLink="/shibie" routerLinkActive="active">
+                                <mat-icon>remove_red_eye</mat-icon>样本识别</a>
+                        </li>
+                        <li>
+                            <a routerLink="/zhanshi" routerLinkActive="active">
+                                <mat-icon> format_align_center</mat-icon>样本管理</a>
+                        </li>
+                        <li>
+                            <a routerLink="/tongjibiao" routerLinkActive="active">
+                                <mat-icon> bar_chart</mat-icon>样本统计</a>
+                        </li>
+                        <li>
+                            <a *ngIf="token" (click)="this.authservice.logout()">
+                                <mat-icon>keyboard_tab</mat-icon>退出</a>
+
+                            <a *ngIf="!token" routerLink="/denglu" routerLinkActive="active">
+                                <mat-icon>person</mat-icon>登录</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- <a  *ngIf="token" (click)="this.authservice.logout()"  > <mat-icon>keyboard_tab</mat-icon>退出</a>  
+   
+      <a  *ngIf="!token" [routerLink]="['/denglu']" routerLinkActive="active" > <mat-icon>person</mat-icon>登录</a> -->
+
+            </div>
+
+        </nav>
+
+        <br>
+        <br>
+
+        <router-outlet></router-outlet>
+    </body>
+</div>
+
+<!-- <app-daohangtiao></app-daohangtiao> -->
+<!-- <app-tongjibiao></app-tongjibiao> -->
+<!-- <app-shiping></app-shiping> -->
+<!-- <app-test-upload-file></app-test-upload-file> -->
+<!-- <app-shouji></app-shouji> -->
+<!-- <app-zhanshi></app-zhanshi> -->

@@ -1,0 +1,10 @@
+{
+    "/api/rocks": {
+        "target": "http://120.24.218.221:8000/",
+        "secure": true,
+        "changeOrigin": true,
+        "pathRewrite": {
+            "/api/rocks": ""
+        }
+    }
+}
